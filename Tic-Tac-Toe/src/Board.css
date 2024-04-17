@@ -1,0 +1,27 @@
+.gridContainer {
+  display: grid;
+  grid-template-columns: repeat(3, 10rem);
+  grid-template-rows: repeat(3, 10rem);
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid black;
+  padding: 1rem;
+}
+
+.item {
+  border: 2px solid red;
+  width: 10rem;
+  height: 10rem;
+  font-size: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.boardBody {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
