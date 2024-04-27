@@ -25,3 +25,10 @@
   justify-content: center;
   height: 100vh;
 }
+
+.gameStateButtonContainer {
+  width: 320%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

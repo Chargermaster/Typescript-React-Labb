@@ -1,20 +1,60 @@
-import React from "react";
+import { useState } from "react";
 import "./Board.css";
 
 const Board = () => {
+  const [turnCount, setTurnCount] = useState<number>(0);
+  const [playFieldSquare, setPlayFieldSquare] = useState<string[]>([
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+  ]);
+  const [startGame, setStartGame] = useState<boolean>(false);
+
+  function handleClick(index: number) {
+    if (playFieldSquare[index] === "" && startGame === true) {
+      const updatedPlayFieldSquare = [...playFieldSquare];
+      if (turnCount % 2 === 0) {
+        updatedPlayFieldSquare[index] = "X";
+      } else {
+        updatedPlayFieldSquare[index] = "O";
+      }
+      setPlayFieldSquare(updatedPlayFieldSquare);
+      setTurnCount(turnCount + 1);
+    }
+  }
+
+  function handleStart() {
+    setStartGame(true);
+  }
+
+  function handleRestart() {
+    setPlayFieldSquare(["", "", "", "", "", "", "", "", ""]);
+    setTurnCount(0);
+  }
+
   return (
     <>
       <div className="boardBody">
         <div className="gridContainer">
-          <div className="item">Item 1</div>
-          <div className="item">Item 2</div>
-          <div className="item">Item 3</div>
-          <div className="item">Item 4</div>
-          <div className="item">Item 5</div>
-          <div className="item">Item 6</div>
-          <div className="item">Item 7</div>
-          <div className="item">Item 8</div>
-          <div className="item">Item 9</div>
+          {playFieldSquare.map((value: string, index: number) => (
+            <div
+              key={index}
+              className="item"
+              onClick={() => handleClick(index)}
+            >
+              {value}
+            </div>
+          ))}
+          <div className="gameStateButtonContainer">
+            {!startGame && <button onClick={handleStart}>Start Game</button>}
+            {startGame && <button onClick={handleRestart}>Reset Game</button>}
+          </div>
         </div>
       </div>
     </>
